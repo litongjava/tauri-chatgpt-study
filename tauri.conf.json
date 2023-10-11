@@ -6,7 +6,7 @@
     "distDir": "dist"
   },
   "package": {
-    "productName": "rust-tauri-chatgpt-study",
+    "productName": "tauri-chatgpt-study",
     "version": "0.1.0"
   },
   "tauri": {
@@ -55,11 +55,13 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 1000,
         "resizable": true,
         "title": "ChatGPT Study",
+        "height": 1000,
         "width": 1500,
-        "url": "https://chat.openai.com/"
+        "url": "https://chat.openai.com/",
+        "x": 200,
+        "y": 0
       }
     ]
   }
