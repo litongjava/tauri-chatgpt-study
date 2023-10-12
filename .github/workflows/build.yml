@@ -43,7 +43,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}-aarch64
+        name: tauri-chatgpt-study-${{ runner.os }}-aarch64
         path: target/aarch64-apple-darwin/release/bundle/dmg/tauri-chatgpt-study_0.1.0_aarch64.dmg
 
   build_ubuntu:
