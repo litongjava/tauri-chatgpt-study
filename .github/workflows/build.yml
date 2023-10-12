@@ -24,7 +24,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: tauri-chatgpt_0.1.0_x64
+        name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}
         path: target/release/bundle/dmg/tauri-chatgpt-study_0.1.0_x64.dmg
 
   build_macos_m2:
@@ -43,30 +43,33 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: tauri-chatgpt-study_0.1.0_aarch64
+        name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}-aarch64
         path: target/aarch64-apple-darwin/release/bundle/dmg/tauri-chatgpt-study_0.1.0_aarch64.dmg
 
   build_ubuntu:
-     runs-on: ubuntu-latest
-     steps:
-     - uses: actions/checkout@v3
-     - name: Install GTK+ 3
-       run: |
-        sudo apt-get update && sudo apt-get install -y libgtk-3-dev libsoup2.4-dev
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install dependencies for Tauri
+    run: |
+      sudo apt-get update
+      sudo apt-get install -y libgtk-3-dev libsoup2.4-dev libwebkit2gtk-4.0-dev build-essential libappindicator3-dev libssl-dev libdbus-1-dev squashfs-tools
 
-     - name: Install Rust
-       run: |
-         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-     - name: Build Tauri App
-       run: |
-         cargo install tauri-cli
-         cargo tauri build
-     - name: Upload build artifact
-       uses: actions/upload-artifact@v3
-       with:
-         name: tauri-chatgpt-study-ubuntu
-         path: target/release/bundle
+    - name: Install Rust
+    run: |
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+    - name: Build Tauri App
+    run: |
+      cargo install tauri-cli
+      cargo tauri build
+    - name: Upload build artifact
+    uses: actions/upload-artifact@v3
+    with:
+      name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}
+      path: target/release/bundle
+
 
   build_windows:
     runs-on: windows-latest
@@ -84,5 +87,5 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: tauri-chatgpt-study_0.1.0_x64_en-US
+        name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}
         path: target/release/bundle/msi/tauri-chatgpt-study_0.1.0_x64_en-US.msi
