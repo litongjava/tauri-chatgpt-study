@@ -69,8 +69,14 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}
-        path: target/release/bundle
+        name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}-deb
+        path: target/release/bundle/deb/tauri-chatgpt-study_0.1.0_amd64.deb
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}-appimage
+        path: target/release/bundle/appimage/tauri-chatgpt-study_0.1.0_amd64.AppImage
 
 
   build_windows:
