@@ -67,10 +67,10 @@ jobs:
         cargo tauri build
 
     - name: Upload build artifact
-    uses: actions/upload-artifact@v3
-    with:
-      name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}
-      path: target/release/bundle
+      uses: actions/upload-artifact@v3
+      with:
+        name: tauri-chatgpt-study-${{ runner.os }}-${{ runner.arch }}
+        path: target/release/bundle
 
 
   build_windows:
